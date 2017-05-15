@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import Comments from './components/comments.jsx';
 
 ReactDOM.render(
-    <h1 className="foo">Hello, world!</h1>,
+    <Comments></Comments>,
     document.querySelector('main')
 );
