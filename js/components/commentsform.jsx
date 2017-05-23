@@ -21,7 +21,22 @@ class CommentsForm extends React.Component {
 const mapDispatchToProps = function(dispatch){
     return {
         handleSubmit: function(body){
-            dispatch({type:'ADD', comment: body });
+            fetch(
+                'https://stupidcomments.herokuapp.com/comments',
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({ body:body })
+                }
+            ).then(function(response){
+                response.json().then(function(data){
+                    console.log(data);
+                    dispatch({type:'ADD', comment: data.body });
+                });
+            });
         }
     }
 }

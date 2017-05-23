@@ -4,6 +4,8 @@ let comments = function(state = [], action){
     switch(action.type){
         case 'ADD':
             return [...state, action.comment];
+        case 'SET':
+            return action.comments
         default:
             return state
     }

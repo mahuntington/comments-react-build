@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import store from '../store.js';
 
 class CommentsList extends React.Component {
     render(){
@@ -9,6 +10,16 @@ class CommentsList extends React.Component {
             )}
         </ul>
 
+    }
+    componentDidMount(){
+        fetch('https://stupidcomments.herokuapp.com/comments').then(function(response){
+            response.json().then(function(data){
+                let commentsArray = data.map(function(comment){
+                    return comment.body
+                });
+                store.dispatch({type:'SET', comments:commentsArray});
+            });
+        });
     }
 }
 
