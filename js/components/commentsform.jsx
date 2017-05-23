@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class CommentsForm extends React.Component {
     constructor(props){
@@ -17,4 +18,17 @@ class CommentsForm extends React.Component {
     }
 }
 
-export default CommentsForm;
+const mapDispatchToProps = function(dispatch){
+    return {
+        handleSubmit: function(body){
+            dispatch({type:'ADD', comment: body });
+        }
+    }
+}
+
+const VisibleCommentsForm = connect(
+    null,
+    mapDispatchToProps
+)(CommentsForm)
+
+export default VisibleCommentsForm;
